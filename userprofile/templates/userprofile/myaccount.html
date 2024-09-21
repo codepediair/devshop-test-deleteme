@@ -1,0 +1,10 @@
+{% extends 'core/base.html' %}
+{% block title %}Signup{% endblock %}
+{% block content %}
+   <h1 class="text-2xl">my account</h1>
+
+   <form method="post" action="{% url 'logout' %}">
+      {% csrf_token %}
+      <button type="submit" class="py-6 px-8 inline-block mt-6 text-white bg-red-600">Logout</button>
+  </form>
+{% endblock %}

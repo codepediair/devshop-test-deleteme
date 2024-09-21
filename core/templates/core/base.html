@@ -1,0 +1,40 @@
+{% load menu %}
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}{% endblock %}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+   <nav class="max-w-4xl mx-auto py-4 px-4 flex items-center justify-between bg-teal-600">
+      <div class="logo">
+         <a href="/" class="text-2xl text-white">
+            DevShop
+         </a>
+      </div>
+
+      <div class="search">
+         <form action="/search/" method="get">
+            <input type="search" name="query" placeholder="Search ...">
+            <button>search</button>
+         </form>
+      </div>
+
+      <div class="text-white menu flex space-x-4">
+         {% menu %}
+
+         {% if request.user.is_authenticated %}
+            <a href="{% url 'myaccount' %}"> My Account </a>
+            <a href="{% url 'my_store' %}"> My Store </a>
+         {% endif %}
+      </div>
+   </nav>
+   <div class="max-w-4xl mx-auto py-4 px-4">
+      {% block content %}
+      {% endblock %}
+   </div>
+</body>
+</html>
